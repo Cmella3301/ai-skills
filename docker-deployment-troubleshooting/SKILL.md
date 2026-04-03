@@ -338,6 +338,31 @@ docker system prune -a -f
 docker-compose up -d --build
 ```
 
+### Issue 6: Stale Container (Not Showing Local File Edits)
+
+**Symptoms:**
+- You changed code or replaced an image locally (e.g. `index.html` or `icon.png`)
+- The app still shows the old version, or "nothing changed"
+- The container is currently running without errors
+
+**Diagnosis:**
+Docker builds an "image" containing a snapshot of your files at the exact moment you run build. If you edit files on your hard drive *after* that, the container has no idea they changed unless you explicitly mapped a volume.
+
+**Fix: The "Nuke and Rebuild" Method**
+When you absolutely need Docker to scrap its cache and pull your new files, use these commands:
+
+```bash
+# 1. Stop the current containers
+docker-compose down
+
+# 2. Obliterate Docker's cache and old images completely
+docker system prune -a
+
+# 3. Rebuild from scratch and start
+docker-compose up -d --build
+```
+> ⚠️ **Warning:** `docker system prune -a` deletes ALL unused Docker images on your system. It is highly effective for breaking cache, but will require re-downloading bases like `node:alpine` the next time you build.
+
 ## Diagnostic Commands Cheat Sheet
 
 ```bash
