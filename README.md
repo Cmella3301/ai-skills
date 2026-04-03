@@ -40,6 +40,14 @@ Each skill folder contains a `SKILL.md` with step-by-step instructions, gotchas,
 
 ---
 
+### 🌟 [`pwa-identity-update`](./pwa-identity-update/SKILL.md)
+**Update PWA icons and force true Windows fullscreen.**
+- PowerShell script to batch resize 1024x1024 images into 192x192 & 512x512 without external tools
+- Configure `manifest.json` with `window-controls-overlay` to remove ugly PWA title bars
+- The "Hard Reset" pipeline required to force browsers to accept new icons
+
+---
+
 ## 🗂️ Structure
 
 ```
