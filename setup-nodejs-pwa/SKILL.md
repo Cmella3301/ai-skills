@@ -243,3 +243,4 @@ Add to the `<head>` section, **before the `<style>` tag**:
 | `sqlite3` fails to build | Ensure `node.exe` is in PATH before running `npm install` |
 | No install prompt in browser | Must use HTTPS or localhost; Chrome/Edge only |
 | Icons not loading | Ensure `server.js` serves static files with `app.use(express.static(__dirname))` |
+| **Manifest/Icons missing in Docker** | If Dockerized, verify `Dockerfile` has `COPY manifest.json .`, `COPY sw.js .`, and `COPY icons/ ./icons/` |

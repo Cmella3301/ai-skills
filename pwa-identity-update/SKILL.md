@@ -94,3 +94,25 @@ When you change `manifest.json` configurations or update core app icons, simply 
 6. Click the **Install App (Monitor with downward arrow)** icon in the address bar to reinstall.
 
 The app will instantly launch with the new icon and the updated fullscreen UI configuration!
+
+---
+
+## Part 4 — Bypassing Stubborn Windows Icon Caches
+
+Sometimes, even after clearing the browser cache, Windows will completely refuse to update the desktop shortcut or taskbar icon (e.g., sticking to an older auto-generated letter icon). This happens due to deep OS-level caching.
+
+**Option A: The App ID Bypass (Safest & Fastest)**
+The easiest way to force Windows to accept a new icon is to subtly trick it into thinking it's installing a brand new app.
+1. Open `manifest.json`.
+2. Change `"start_url": "/"` to `"start_url": "/?app=1"` (or increment the number if you've done this before).
+3. Reinstall the PWA. Chrome will generate a completely new Application ID, bypassing the OS cache entirely.
+
+**Option B: The Icon Cache Sledgehammer (Nuclear Option)**
+If you exclusively want to wipe the Windows Icon Cache without altering the PWA code, run this script in PowerShell to terminate Windows Explorer, delete the `.db` files, and restart the UI:
+
+```powershell
+taskkill /IM explorer.exe /F
+Remove-Item -Path "$env:localappdata\IconCache.db" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:localappdata\Microsoft\Windows\Explorer\iconcache_*.db" -Force -ErrorAction SilentlyContinue
+Start-Process explorer.exe
+```
