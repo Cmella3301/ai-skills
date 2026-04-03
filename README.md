@@ -29,6 +29,17 @@ Each skill folder contains a `SKILL.md` with step-by-step instructions, gotchas,
 
 ---
 
+### 🐙 [`github-workflow`](./github-workflow/SKILL.md)
+**Set up Git & GitHub CLI on Windows, create repos, and manage commits.**
+- Install Git + GitHub CLI via `winget`
+- Fix PATH issues in PowerShell
+- Authenticate with `gh auth login`
+- Create GitHub repos and push existing projects
+- Day-to-day commit workflow + useful commands
+- Common errors and fixes cheat sheet
+
+---
+
 ## 🗂️ Structure
 
 ```
